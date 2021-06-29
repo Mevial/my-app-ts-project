@@ -1,26 +1,29 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from './Navbar.module.css'
 
 // type PropsNavbarType = {
 //     navValue: string
 // }
 const Navbar = () => {
-    return <nav className={styles.nav}>
-        <div className={styles.item}>
-            <a href="/profile">Profile</a>
-        </div>
-        <div className={`${styles.item} ${styles.active}`}>
-            <a href="/dialogs">Messages</a>
-        </div>
-        <div className={styles.item}>
-            <a href="/News">News</a>
-        </div>
-        <div className={styles.item}>
-            <a href="/Music">Music</a>
-        </div>
-        <div className={styles.item}>
-            <a href="/Settings">Settings</a>
-        </div>
-    </nav>
+    return (
+        <nav className={styles.nav}>
+            <div className={styles.item}>
+                <NavLink to="/profile" activeClassName={styles.activeLink}>Profile</NavLink>
+            </div>
+            <div className={`${styles.item} ${styles.active}`}>
+                <NavLink to="/dialogs" activeClassName={styles.activeLink}>Messages</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to="/News" activeClassName={styles.activeLink}>News</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to="/Music" activeClassName={styles.activeLink}>Music</NavLink>
+            </div>
+            <div className={styles.item}>
+                <NavLink to="/Settings" activeClassName={styles.activeLink}>Settings</NavLink>
+            </div>
+        </nav>
+    )
 }
 export default Navbar
