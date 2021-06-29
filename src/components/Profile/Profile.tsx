@@ -1,21 +1,17 @@
 import React from 'react';
-import styles from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+
 type ProfilePropsType = {
-    profileValue: string | number
+    profileValue: string
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div>
-        <div>
-            <img src='https://purewows3.imgix.net/images/articles/2020_03/calming-pictures-cat.jpg?auto=format,compress&cs=strip' alt={'#'} />
+            <ProfileInfo profileInfoValue={'Ava + description'}/>
+            <MyPosts postsValue={'Active'}/>
         </div>
-        <div>
-            ava + description
-        </div>
-        <MyPosts profileValue={props.profileValue} />
-    </div>
     )
 }
 
