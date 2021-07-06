@@ -11,7 +11,7 @@ const Profile = () => {
     return (
         <div>
             <ProfileInfo profileInfoValue={'Ava + description'}/>
-            <MyPosts postsValue={'Active'}/>
+            <MyPosts likesCount={12} message={'Active'} />
         </div>
     )
 }
