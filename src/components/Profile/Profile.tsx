@@ -1,17 +1,17 @@
 import React from 'react';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {ProfilePageType} from "../../Redux/state";
 
-/*type ProfilePropsType = {
-    profileValue: string
-}*/
+type ProfileType = {
+    profilePage: ProfilePageType
+}
 
-// const Profile: React.FC<ProfilePropsType> = (props) => {
-const Profile = () => {
+const Profile = (props: ProfileType) => {
     return (
         <div>
             <ProfileInfo profileInfoValue={'Ava + description'}/>
-            <MyPosts likesCount={12} message={'Active'} />
+            <MyPosts posts={props.profilePage.posts}/>
         </div>
     )
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './Post.module.css';
 
-type PropsPostType = {
+type PostType = {
     message: string
     likesCount: number
 }
 
-const Post = (props: PropsPostType) => {
+const Post = (props: PostType) => {
     return (
         <div className={styles.item}>
             <img src='https://www.film.ru/sites/default/files/filefield_paths/maxresdefault_1_24.jpg'/>
