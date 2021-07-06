@@ -3,8 +3,14 @@ import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 type PropsMyPostsType = {
-    postsValue: string | number
+    message: string
+    likesCount: number
 }
+
+let postData = [
+    {id: 1, message: 'Hi, how are you?', likesCount: 12},
+    {id: 2, message: 'Hi, Yo', likesCount: 10}
+]
 
 const MyPosts: React.FC<PropsMyPostsType> = (props) => {
     return (
@@ -19,8 +25,8 @@ const MyPosts: React.FC<PropsMyPostsType> = (props) => {
                 </div>
             </div>
             <div className={styles.posts}>
-                <Post message='Hi, how are you?' postsValue={props.postsValue} likesCount={0}/>
-                <Post message='Hi, Yo' postsValue={props.postsValue} likesCount={23}/>
+                <Post message={postData[0].message} likesCount={postData[0].likesCount}/>
+                <Post message={postData[1].message} likesCount={postData[1].likesCount}/>
             </div>
         </div>
     )
