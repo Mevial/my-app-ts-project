@@ -17,7 +17,6 @@ type AppPropsType = {
 const App = (props: AppPropsType) => {
 
     return (
-        <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
@@ -29,8 +28,6 @@ const App = (props: AppPropsType) => {
                     <Route path={"/settings"} render={() => <Settings settingsValue={'Settings'}/>}/>
                 </div>
             </div>
-        </BrowserRouter>
-
     );
 }
 

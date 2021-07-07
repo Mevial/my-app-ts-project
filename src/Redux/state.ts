@@ -30,7 +30,6 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-
 let state: RootStateType = {
     profilePage: {
         posts: [
@@ -57,5 +56,4 @@ let state: RootStateType = {
     },
     sidebar: {}
 }
-
 export default state;
