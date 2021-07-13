@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type MessageType = {
     id: number
     message: string
@@ -16,6 +18,7 @@ export type PostType = {
 }
 
 export type ProfilePageType = {
+    messageForNewPost: string
     posts: Array<PostType>
 }
 
@@ -33,6 +36,7 @@ export type RootStateType = {
 
 let state: RootStateType = {
     profilePage: {
+        messageForNewPost: "",
         posts: [
             {id: 1, message: 'Hi, how are you?', likesCount: 12},
             {id: 2, message: 'Hi, Yo', likesCount: 10}
@@ -66,7 +70,12 @@ export const addPost = (postMessage: string) => {
         likesCount: 0
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.messageForNewPost = '';
+    rerenderEntireTree(state)
 }
 
-
+export  const changeNewText = (newText: string) => {
+    state.profilePage.messageForNewPost = newText;
+    rerenderEntireTree(state)
+}
 export default state;

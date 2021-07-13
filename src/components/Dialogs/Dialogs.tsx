@@ -3,11 +3,13 @@ import React from "react";
 import styles from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {DialogPageType} from "../../Redux/state";
+import {changeNewText, DialogPageType} from "../../Redux/state";
 
 type DialogsPropsType = {
     dialogsPage: DialogPageType
-    addPostCallback: (postMessage: string) => void
+  /*  addPostCallback: (postMessage: string) => void
+    message: string
+    changeNewTextCallback: (newText: string) => void*/
 }
 
 const Dialogs = (props: DialogsPropsType) => {
