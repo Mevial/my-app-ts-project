@@ -4,8 +4,9 @@ export type MessageType = {
 }
 
 export type DialogType = {
-    id: number
     name: string
+    id: number
+
 }
 
 export type PostType = {
