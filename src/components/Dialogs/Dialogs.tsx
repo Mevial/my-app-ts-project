@@ -6,7 +6,8 @@ import DialogItem from "./DialogItem/DialogItem";
 import {DialogPageType} from "../../Redux/state";
 
 type DialogsPropsType = {
-dialogsPage: DialogPageType
+    dialogsPage: DialogPageType
+    addPostCallback: (postMessage: string) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {

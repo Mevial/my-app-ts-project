@@ -4,12 +4,27 @@ import {MessageType} from "../../../Redux/state";
 
 
 type MessagePropsType = {
-   message: MessageType
+    message: MessageType
 }
 
 
-const Message= (props: MessagePropsType) => {
-    return <div className={styles.dialog}>{props.message.message}</div>
+const Message = (props: MessagePropsType) => {
+
+    let newMessageElement = React.createRef<HTMLTextAreaElement>();
+
+    let addMessage = () => {
+        alert(newMessageElement.current?.value);
+    }
+    return (
+        <div>
+            <div className={styles.dialog}>{props.message.message}</div>
+            <div>
+                <textarea ref={newMessageElement}/>
+            </div>
+            <div>
+                <button onClick={addMessage}>Add message</button>
+            </div>
+        </div>)
 }
 
 export default Message

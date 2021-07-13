@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state from "./Redux/state";
+import state, {addPost} from "./Redux/state";
 import {BrowserRouter} from "react-router-dom";
 
 
