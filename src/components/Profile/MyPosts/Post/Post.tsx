@@ -9,7 +9,7 @@ type PostType = {
 const Post = (props: PostType) => {
     return (
         <div className={styles.item}>
-            <img src='https://www.film.ru/sites/default/files/filefield_paths/maxresdefault_1_24.jpg'/>
+            <img src='https://www.film.ru/sites/default/files/filefield_paths/maxresdefault_1_24.jpg' alt={'img'}/>
             {props.message}
             <div>
                 <span>Like</span> {props.likesCount}

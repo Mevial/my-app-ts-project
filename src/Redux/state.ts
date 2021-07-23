@@ -1,4 +1,10 @@
-import {rerenderEntireTree} from "../render";
+let onChange = () => {
+    console.log("Hello")
+}
+
+export const subscribe = (callback: () => void) => {
+    onChange = callback;
+}
 
 export type MessageType = {
     id: number
@@ -71,11 +77,11 @@ export const addPost = (postMessage: string) => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.messageForNewPost = '';
-    rerenderEntireTree(state)
+    onChange();
 }
 
 export  const changeNewText = (newText: string) => {
     state.profilePage.messageForNewPost = newText;
-    rerenderEntireTree(state)
+    onChange();
 }
 export default state;

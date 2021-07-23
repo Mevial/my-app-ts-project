@@ -13,6 +13,7 @@ export type ProfileType = {
 
 const Profile = (props: ProfileType) => {
     return (
+
         <div>
             <ProfileInfo profileInfoValue={'Ava + description'}/>
             <MyPosts posts={props.profilePage.posts} message={props.message} changeNewTextCallback={props.changeNewTextCallback} addPostCallback={addPost}/>
