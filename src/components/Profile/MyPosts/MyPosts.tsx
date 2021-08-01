@@ -17,8 +17,9 @@ const MyPosts = (props: MyPostsType) => {
     // let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
+        debugger
         props.addPostCallback(props.message)
-       // props.changeNewTextCallback(''); // МБ ТУТ НЕ ТАК
+        // props.changeNewTextCallback(''); // МБ ТУТ НЕ ТАК
     }
     const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.changeNewTextCallback(e.currentTarget.value);
