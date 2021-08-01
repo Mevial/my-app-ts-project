@@ -11,7 +11,7 @@ import store from "./Redux/state";
 export const renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} addPost={store.addPost.bind(store)} changeNewText={store.changeNewText.bind(store)} />
+            <App store={store} />
         </BrowserRouter>, document.getElementById('root'));
 }
 

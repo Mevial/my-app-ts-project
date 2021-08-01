@@ -8,12 +8,10 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StoreType} from "./Redux/state";
+import store, {StoreType} from "./Redux/state";
 
 type AppPropsType = {
     store: StoreType
-    addPost: (postMessage: string) => void
-    changeNewText: (newText: string) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -29,8 +27,7 @@ const App: React.FC<AppPropsType> = (props) => {
                     changeNewTextCallback={changeNewText}*//>}/>
                 <Route path={"/profile"} render={() => <Profile profilePage={state.profilePage}
                                                                 message={state.profilePage.messageForNewPost}
-                                                                addPostCallback={props.addPost}
-                                                                changeNewTextCallback={props.changeNewText}
+                                                                dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
 
                 <Route path={"/news"} render={() => <News newsValue={'News'}/>}/>
