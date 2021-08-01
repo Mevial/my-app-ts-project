@@ -22,6 +22,7 @@ const App: React.FC<AppPropsType> = (props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path={"/dialogs"} render={() => <Dialogs dialogsPage={state.dialogsPage}
+                                                                dispatch={props.store.dispatch.bind(props.store)}
                     /*addPostCallback={addPost}
                     message={state.profilePage.messageForNewPost}
                     changeNewTextCallback={changeNewText}*//>}/>
