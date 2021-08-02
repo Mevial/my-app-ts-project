@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {ActionsTypes, addPostAC, PostType} from "../../../Redux/state";
+import {ActionsTypes, PostType} from "../../../Redux/state";
+import {addPostAC} from "../../../Redux/profile-reducer";
 
 type MyPostsType = {
     message: string
@@ -19,7 +20,7 @@ const MyPosts = (props: MyPostsType) => {
         debugger
         //props.addPostCallback(props.message)
         props.dispatch(addPostAC(props.message))
-        // props.changeNewTextCallback(''); // МБ ТУТ НЕ ТАК
+        // props.changeNewTextCallback(''); //
     }
     const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         //props.changeNewTextCallback(e.currentTarget.value);
