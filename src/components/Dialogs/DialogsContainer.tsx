@@ -1,30 +1,29 @@
-import React, {ChangeEvent} from "react";
-
-import styles from './Dialogs.module.css'
-import Message from "./Message/Message";
-import DialogItem from "./DialogItem/DialogItem";
-import {ActionsTypes, DialogPageType, sendMessageAC,} from "../../Redux/store";
+import React from "react";
+import {sendMessageAC,} from "../../Redux/store";
 import {updateNewMessageBodyAC} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import {StoreType} from "../../Redux/redux-store";
+import {StoreContext} from "../../StoreContext";
 
-type DialogsPropsType = {
-    // dialogsPage: DialogPageType
-    // dispatch: (action: ActionsTypes) => void
-    store: StoreType
-}
 
-const DialogsContainer = (props: DialogsPropsType) => {
+const DialogsContainer = () => {
 
-    let state = props.store.getState().dialogsPage
+    return <StoreContext.Consumer>
+        {store => {
+            //фигурные скопки должны быть на новой строке в этом месте.
+            // let state = store.getState().dialogsPage
 
-    let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageAC())
-    }
-    let onNewMessageChange = (body: string) => {
-        props.store.dispatch(updateNewMessageBodyAC(body))
-    }
-    return <Dialogs updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick} dialogsPage={state}/>
+            let onSendMessageClick = () => {
+                store.dispatch(sendMessageAC())
+            }
+            let onNewMessageChange = (body: string) => {
+                store.dispatch(updateNewMessageBodyAC(body))
+            }
+            return <Dialogs updateNewMessageBody={onNewMessageChange}
+                            sendMessage={onSendMessageClick}
+                            dialogsPage={store.getState().dialogsPage}/>
+        }
+        }
+    </StoreContext.Consumer>
 }
 
 export default DialogsContainer

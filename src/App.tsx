@@ -12,8 +12,8 @@ import {StoreType} from "./Redux/redux-store";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
-    store: StoreType
-     // store: StoreType
+    // store: StoreType
+    // store: StoreType
 
 }
 
@@ -24,20 +24,15 @@ const App: React.FC<AppPropsType> = (props) => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path={"/dialogs"} render={() => <DialogsContainer store={props.store}
-                                                                // dialogsPage={state.dialogsPage}
-                                                                // dispatch={props.store.dispatch.bind(props.store)}
-                    /*addPostCallback={addPost}
-                    message={state.profilePage.messageForNewPost}
-                    changeNewTextCallback={changeNewText}*//>}/>
-                <Route path={"/profile"} render={() => <Profile store={props.store}
+                <Route path={"/dialogs"} render={() => <DialogsContainer
+                    // dialogsPage={state.dialogsPage}
+                    // dispatch={props.store.dispatch.bind(props.store)}
+                />}/>
+                <Route path={"/profile"} render={() => <Profile
 
-
-
-
-                                                                // profilePage={state.profilePage}
-                                                                // message={state.profilePage.messageForNewPost}
-                                                                // dispatch={props.store.dispatch.bind(props.store)}
+                    // profilePage={state.profilePage}
+                    // message={state.profilePage.messageForNewPost}
+                    // dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
 
                 <Route path={"/news"} render={() => <News newsValue={'News'}/>}/>

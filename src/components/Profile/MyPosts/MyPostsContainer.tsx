@@ -1,35 +1,29 @@
 import React, {ChangeEvent} from 'react';
-import styles from './MyPosts.module.css';
-import Post from "./Post/Post";
-import {ActionsTypes, PostType, updateNewPostTextAC} from "../../../Redux/store";
-import {addPostAC} from "../../../Redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import {type} from "os";
-import {StoreType} from "../../../Redux/redux-store";
+import {StoreContext} from '../../../StoreContext';
 
-type MyPostsType = {
-    // message: string
-    // posts: Array<PostType>
-    // dispatch: (action: ActionsTypes) => void
-    store: StoreType
-}
-
-
-const MyPostsContainer = (props: MyPostsType) => {
-    let state = props.store.getState()
-
-    const addPost = (message: string) => {
-        // props.addPostCallback()
-        props.store.dispatch({type: "ADD-POST", postMessage: message } )
-        // props.changeNewTextCallback(''); //
-    }
-    const onPostChange = (updateNewPostText: string) => {
-        props.store.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: updateNewPostText})
-    }
-
-
-    return (<MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={state.profilePage.posts} message={state.profilePage.messageForNewPost} />)
-
+const MyPostsContainer = () => {
+    return (
+        <StoreContext.Consumer>
+            {
+                // сверху фича со скобочкой, аккуратно!
+                (store) => {
+                    const addPost = (message: string) => {
+                        // props.addPostCallback()
+                        store.dispatch({type: "ADD-POST", postMessage: message})
+                        // props.changeNewTextCallback(''); //
+                    }
+                    const onPostChange = (updateNewPostText: string) => {
+                        store.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: updateNewPostText})
+                    }
+                    let state = store.getState()
+                    return <MyPosts updateNewPostText={onPostChange}
+                                    addPost={addPost}
+                                    posts={state.profilePage.posts}
+                                    message={state.profilePage.messageForNewPost}/>
+                }}
+        </StoreContext.Consumer>
+    )
 }
 
 
