@@ -1,7 +1,27 @@
 import React from 'react';
-import {ActionsTypes, DialogPageType, PostType} from "./state";
+import {ActionsTypes, DialogPageType, PostType} from "./store";
 
-export const dialogsReducer = (state: DialogPageType , action: ActionsTypes) => {
+let initialState = {
+
+    dialogs: [
+        {id: 1, name: 'Dimych'},
+        {id: 2, name: 'Andrey'},
+        {id: 3, name: 'Sveta'},
+        {id: 4, name: 'Sasha'},
+        {id: 5, name: 'Viktor'},
+        {id: 6, name: 'Valera'}
+    ],
+        messages: [
+    {id: 1, message: 'Hi'},
+    {id: 2, message: 'How is your'},
+    {id: 3, message: 'Yo'},
+    {id: 4, message: 'Yi'},
+    {id: 5, message: 'Ya'},
+],
+    newMessageBody: ""
+};
+
+export const dialogsReducer = (state: DialogPageType = initialState , action: ActionsTypes) => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
             state.newMessageBody = action.body
