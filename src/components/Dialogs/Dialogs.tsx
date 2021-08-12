@@ -5,12 +5,10 @@ import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {DialogPageType} from "../../Redux/store";
 
-type DialogsPropsType = {
+export type DialogsPropsType = {
     dialogsPage: DialogPageType
     sendMessage: () => void
     updateNewMessageBody: (body: string) => void
-    // dispatch: (action: ActionsTypes) => void
-    // store: StoreType
 }
 
 const Dialogs = (props: DialogsPropsType) => {

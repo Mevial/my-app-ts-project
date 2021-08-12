@@ -1,31 +1,35 @@
-import React from 'react';
-import {ActionsTypes, PostType, ProfilePageType} from "./store";
 
+import {ActionsTypes, PostType, ProfilePageType} from "./store";
 
 
 let initialState = {
     messageForNewPost: "",
-        posts: [
-    {id: 1, message: 'Hi, how are you?', likesCount: 12},
-    {id: 2, message: 'Hi, Yo', likesCount: 10}
-]
+    posts: [
+        {id: 1, message: 'Hi, how are you?', likesCount: 12},
+        {id: 2, message: 'Hi, Yo', likesCount: 10}
+    ]
 };
 
 
-export const profileReducer = (state: ProfilePageType = initialState, action:ActionsTypes) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case "ADD-POST":
+        case "ADD-POST": {
             const newPost: PostType = {
                 id: new Date().getTime(),
                 message: action.postMessage,
                 likesCount: 0
-            }
-            state.posts.push(newPost);
-            state.messageForNewPost = '';
-            return state
-        case "UPDATE-NEW-POST-TEXT":
-            state.messageForNewPost = action.newText;
-            return state
+            };
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.push(newPost);
+            stateCopy.messageForNewPost = '';
+            return stateCopy
+        }
+        case "UPDATE-NEW-POST-TEXT": {
+            let stateCopy = {...state}
+            stateCopy.messageForNewPost = action.newText;
+            return stateCopy
+        }
         default:
             return state
     }
@@ -35,5 +39,12 @@ export const addPostAC = (postMessage: string) => {
     return {
         type: "ADD-POST",
         postMessage: postMessage
+    } as const
+}
+
+export const updateNewPostTextAC = (newText: string) => {
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        newText: newText
     } as const
 }

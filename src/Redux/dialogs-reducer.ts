@@ -1,6 +1,15 @@
 import React from 'react';
-import {ActionsTypes, DialogPageType, PostType} from "./store";
+import {ActionsTypes} from "./store";
 
+export type DialogType = {
+    name: string
+    id: number
+
+}
+export type MessageType = {
+    id: number
+    message: string
+}
 let initialState = {
 
     dialogs: [
@@ -10,18 +19,21 @@ let initialState = {
         {id: 4, name: 'Sasha'},
         {id: 5, name: 'Viktor'},
         {id: 6, name: 'Valera'}
-    ],
-        messages: [
-    {id: 1, message: 'Hi'},
-    {id: 2, message: 'How is your'},
-    {id: 3, message: 'Yo'},
-    {id: 4, message: 'Yi'},
-    {id: 5, message: 'Ya'},
-],
+    ] as Array<DialogType>,
+    messages: [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'How is your'},
+        {id: 3, message: 'Yo'},
+        {id: 4, message: 'Yi'},
+        {id: 5, message: 'Ya'},
+    ] as Array<MessageType>,
     newMessageBody: ""
 };
 
-export const dialogsReducer = (state: DialogPageType = initialState , action: ActionsTypes) => {
+export type InitialStateType = typeof initialState
+
+
+export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
             state.newMessageBody = action.body
@@ -42,3 +54,9 @@ export const updateNewMessageBodyAC = (body: string) => {
         body: body
     } as const
 }
+export const sendMessageAC = () => {
+    return {
+        type: "SEND-MESSAGE",
+    } as const
+}
+

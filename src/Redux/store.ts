@@ -1,13 +1,13 @@
-import {addPostAC, profileReducer} from "./profile-reducer";
-import {dialogsReducer, updateNewMessageBodyAC} from "./dialogs-reducer";
+import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
+import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
 
-export type DialogType = {
+type DialogType = {
     name: string
     id: number
 
@@ -53,19 +53,9 @@ export type ActionsTypes =
     | ReturnType<typeof sendMessageAC>
 
 
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
-    } as const
-}
 
 
-export const sendMessageAC = () => {
-    return {
-        type: "SEND-MESSAGE",
-    } as const
-}
+
 
 
 const store: StoreType = {
