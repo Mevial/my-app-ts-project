@@ -1,4 +1,3 @@
-
 import {ActionsTypes, PostType, ProfilePageType} from "./store";
 
 
@@ -19,16 +18,17 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 message: action.postMessage,
                 likesCount: 0
             };
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost);
-            stateCopy.messageForNewPost = '';
-            return stateCopy
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                messageForNewPost: ''
+            }
         }
         case "UPDATE-NEW-POST-TEXT": {
-            let stateCopy = {...state}
-            stateCopy.messageForNewPost = action.newText;
-            return stateCopy
+            return {
+                ...state,
+                messageForNewPost: action.newText
+            }
         }
         default:
             return state

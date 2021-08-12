@@ -18,16 +18,16 @@ let mapStateToProps = (state: AppStateType) => {
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        updateNewMessageBody: () => {
+        sendMessage: () => {
             dispatch(sendMessageAC())
-
         },
-        sendMessage: (body: string) => {
+        updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyAC(body))
+
         }
     }
 }
 
-// @ts-ignore
+
 export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
