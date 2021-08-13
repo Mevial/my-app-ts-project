@@ -8,16 +8,15 @@ import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StoreType} from "./Redux/redux-store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/users/UsersContainer";
 
 type AppPropsType = {
-    // store: StoreType
     // store: StoreType
 
 }
 
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC<AppPropsType> = () => {
     // const state = props.store.getState()
     return (
         <div className='app-wrapper'>
@@ -25,16 +24,10 @@ const App: React.FC<AppPropsType> = (props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path={"/dialogs"} render={() => <DialogsContainer
-                    // dialogsPage={state.dialogsPage}
-                    // dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
                 <Route path={"/profile"} render={() => <Profile
-
-                    // profilePage={state.profilePage}
-                    // message={state.profilePage.messageForNewPost}
-                    // dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
-
+                <Route path={"/users"} render={() => <UsersContainer/>}/>
                 <Route path={"/news"} render={() => <News newsValue={'News'}/>}/>
                 <Route path={"/music"} render={() => <Music musicValue={'Music'}/>}/>
                 <Route path={"/settings"} render={() => <Settings settingsValue={'Settings'}/>}/>

@@ -1,5 +1,8 @@
 import React from 'react';
-import {ActionsTypes, SidebarType} from "./store";
+import {ActionsTypes} from "./redux-store";
+
+
+export type SidebarType = {}
 
 let initialState = {
 

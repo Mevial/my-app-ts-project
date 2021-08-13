@@ -1,6 +1,11 @@
 import React from 'react';
-import {ActionsTypes} from "./store";
+import {ActionsTypes} from "./redux-store";
 
+export type DialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessageBody: any
+}
 export type DialogType = {
     name: string
     id: number

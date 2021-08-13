@@ -1,5 +1,15 @@
-import {ActionsTypes, PostType, ProfilePageType} from "./store";
+import {ActionsTypes} from "./redux-store";
 
+
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type ProfilePageType = {
+    messageForNewPost: string
+    posts: Array<PostType>
+}
 
 let initialState = {
     messageForNewPost: "",
