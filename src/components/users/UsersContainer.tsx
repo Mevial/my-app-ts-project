@@ -5,6 +5,7 @@ import {Dispatch} from "redux";
 import {followAC,  setUsersAC, unfollowAC, UserType} from "../../Redux/users-reducer";
 import {AppStateType} from "../../Redux/redux-store";
 
+
 type MapStateToProps = {
     users: Array<UserType>
 }
