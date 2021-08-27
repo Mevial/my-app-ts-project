@@ -1,7 +1,7 @@
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {follow, setUsers, unfollow} from "./users-reducer";
 
 type MessageType = {
     id: number
@@ -32,7 +32,7 @@ type PostType = {
 }
 type SidebarType = {}
 
-export type RootStateType = {
+ type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
@@ -52,9 +52,9 @@ export type RootStateType = {
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
 
 
 
