@@ -23,6 +23,7 @@ type PostType = {
  type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
+     profile: any
 }
 
  type DialogPageType = {
@@ -69,7 +70,8 @@ const store: StoreType = {
             posts: [
                 {id: 1, message: 'Hi, how are you?', likesCount: 12},
                 {id: 2, message: 'Hi, Yo', likesCount: 10}
-            ]
+            ],
+            profile: null
         },
         dialogsPage: {
             dialogs: [

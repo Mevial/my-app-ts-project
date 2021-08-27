@@ -1,11 +1,16 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css';
+import Preloader from "../../common/Preloader/Preloader";
 
 type ProfileInfoPropsType = {
-    profileInfoValue: string
+    profile: any
 }
 
 const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
+
     return (
         <div>
             <div>
@@ -14,7 +19,8 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                     alt={'#'}/>
             </div>
             <div className={styles.descriptionBlock}>
-                {props.profileInfoValue}
+                <img src={props.profile.photos.large}/>
+                ava + description
             </div>
         </div>
     )
