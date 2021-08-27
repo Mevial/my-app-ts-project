@@ -23,14 +23,14 @@ const App: React.FC<AppPropsType> = () => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path={"/dialogs"} render={() => <DialogsContainer
+                <Route path={'/dialogs'} render={() => <DialogsContainer
                 />}/>
-                <Route path={"/profile"} render={() => <ProfileContainer
+                <Route path={'/profile/:userId?'} render={() => <ProfileContainer
                 />}/>
-                <Route path={"/users"} render={() => <UsersContainer/>}/>
-                <Route path={"/news"} render={() => <News newsValue={'News'}/>}/>
-                <Route path={"/music"} render={() => <Music musicValue={'Music'}/>}/>
-                <Route path={"/settings"} render={() => <Settings settingsValue={'Settings'}/>}/>
+                <Route path={'/users'} render={() => <UsersContainer/>}/>
+                <Route path={'/news'} render={() => <News newsValue={'News'}/>}/>
+                <Route path={'/music'} render={() => <Music musicValue={'Music'}/>}/>
+                <Route path={'/settings'} render={() => <Settings settingsValue={'Settings'}/>}/>
             </div>
         </div>
 
