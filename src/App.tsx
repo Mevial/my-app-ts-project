@@ -10,6 +10,7 @@ import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 type AppPropsType = {
     // store: StoreType
@@ -28,6 +29,7 @@ const App: React.FC<AppPropsType> = () => {
                 <Route path={'/profile/:userId?'} render={() => <ProfileContainer
                 />}/>
                 <Route path={'/users'} render={() => <UsersContainer/>}/>
+                <Route path={'/login'} render={() => <Login/>}/>
                 <Route path={'/news'} render={() => <News newsValue={'News'}/>}/>
                 <Route path={'/music'} render={() => <Music musicValue={'Music'}/>}/>
                 <Route path={'/settings'} render={() => <Settings settingsValue={'Settings'}/>}/>
