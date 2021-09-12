@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
     follow,
-     getUsers,
+    getUsers,
     setTotalUsersCount,
     setUsers,
-     unfollow,
+    unfollow,
     UserType
 } from '../../Redux/users-reducer';
 import {AppStateType} from '../../Redux/redux-store';
@@ -19,7 +19,7 @@ type MapStateToProps = {
     totalUsersCount: number,
     currentPage: number
     isFetching: boolean
-    followingInProgress:  Array<boolean | number>
+    followingInProgress: Array<boolean | number>
 }
 type MapDispatchToProps = {
     follow: (userId: number) => void
@@ -56,7 +56,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
                    users={this.props.users}
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
-                   // toggleFollowingProgress={this.props.toggleFollowingProgress}
+                // toggleFollowingProgress={this.props.toggleFollowingProgress}
                    followingInProgress={this.props.followingInProgress}
 
             />

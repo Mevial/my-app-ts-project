@@ -46,19 +46,3 @@ export const authAPI = {
             })
     }
 }
-
-
-// export const followUnfollowAPI = {
-//     deleteSubscribe(id = 1) {
-//         return instance.delete(`follow/${id}`)
-//             .then(response => {
-//                 return response.data
-//             })
-//     },
-//     postSubscribe(id = 1) {
-//         return instance.post(`follow/${id}`, {})
-//             .then(response => {
-//                 return response.data
-//             })
-//     }
-// }
