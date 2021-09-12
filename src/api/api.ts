@@ -14,7 +14,19 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             })
-    }
+    },
+    follow(userId = 1) {
+        return instance.post(`follow/${userId}`, {})
+            .then(response => {
+                return response.data
+            })
+    },
+    unfollow(userId = 1) {
+        return instance.delete(`follow/${userId}`)
+            .then(response => {
+                return response.data
+            })
+    },
 }
 
 export const profileAPI = {
@@ -36,17 +48,17 @@ export const authAPI = {
 }
 
 
-export const followUnfollowAPI = {
-    deleteSubscribe(id = 1) {
-        return instance.delete(`follow/${id}`)
-            .then(response => {
-                return response.data
-            })
-    },
-    postSubscribe(id = 1) {
-        return instance.post(`follow/${id}`, {})
-            .then(response => {
-                return response.data
-            })
-    }
-}
+// export const followUnfollowAPI = {
+//     deleteSubscribe(id = 1) {
+//         return instance.delete(`follow/${id}`)
+//             .then(response => {
+//                 return response.data
+//             })
+//     },
+//     postSubscribe(id = 1) {
+//         return instance.post(`follow/${id}`, {})
+//             .then(response => {
+//                 return response.data
+//             })
+//     }
+// }

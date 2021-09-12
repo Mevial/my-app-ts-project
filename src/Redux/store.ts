@@ -1,7 +1,7 @@
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profile-reducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {follow, setUsers, unfollow} from "./users-reducer";
+import {followSuccess, setUsers, unfollowSuccess} from "./users-reducer";
 
 type MessageType = {
     id: number
@@ -53,8 +53,8 @@ type SidebarType = {}
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
 
 
