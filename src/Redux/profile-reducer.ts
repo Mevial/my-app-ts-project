@@ -12,6 +12,7 @@ export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
     profile: any
+    status: string
 }
 
 let initialState = {
@@ -20,7 +21,8 @@ let initialState = {
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'Hi, Yo', likesCount: 10}
     ],
-    profile: null
+    profile: null,
+    status: ""
 };
 
 
@@ -49,6 +51,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 ...state,
                 profile: action.profile
             }
+        case "SET-STATUS":
+            return {
+                ...state,
+                status: action.status
+            }
 
         default:
             return state
@@ -74,8 +81,30 @@ export const setUserProfile = (profile: any) => {
         profile
     } as const
 }
+export const setStatus = (status: any) => {
+    return {
+        type: "SET-STATUS",
+        status
+    } as const
+}
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
-    profileAPI.getProfile(userId).then(data => {
-        dispatch(setUserProfile(data))
-    })
+    profileAPI.getProfile(userId)
+        .then(data => {
+            dispatch(setUserProfile(data))
+        })
+}
+export const getUserStatus = (userId: string) => (dispatch: Dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(data => {
+            dispatch(setStatus(data))
+        })
+}
+
+export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+            }
+        })
 }

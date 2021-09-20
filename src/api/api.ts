@@ -35,7 +35,17 @@ export const profileAPI = {
             .then(response => {
                 return response.data
             })
-    }
+    },
+    getStatus(userId = '1') {
+        return instance.get<{ userId: number }>(`profile/status/${userId}`)
+            .then(response => {
+                return response.data
+            })
+    },
+    updateStatus(status = '') {
+        return instance.put<{ data: {}, fieldsErrors: [], messages: [], resultCode: 0 }>(`profile/status`, {status: status})
+
+    },
 }
 
 export const authAPI = {
