@@ -1,6 +1,5 @@
 import {ActionsTypes} from "./redux-store";
 import {usersAPI} from "../api/api";
-import React from "react";
 import {Dispatch} from "redux";
 
 
