@@ -3,6 +3,7 @@ import {addPostAC, profileReducer, setStatus, setUserProfile, updateNewPostTextA
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import thunkMiddleware from "redux-thunk"
+import {reducer as formReducer} from 'redux-form'
 import {
     followSuccess,
     setCurrentPage,
@@ -37,6 +38,7 @@ export const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    form: formReducer
 });
 
 
@@ -44,3 +46,6 @@ export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware) );
 
 export type StoreType = typeof store
 export type AppStateType = ReturnType<typeof rootReducer>
+
+// @ts-ignore
+window.store = store
