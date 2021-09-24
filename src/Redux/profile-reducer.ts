@@ -40,12 +40,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 messageForNewPost: ''
             }
         }
-        case "UPDATE-NEW-POST-TEXT": {
-            return {
-                ...state,
-                messageForNewPost: action.newText
-            }
-        }
+
         case "SET-USER-PROFILE":
             return {
                 ...state,
@@ -69,12 +64,7 @@ export const addPostAC = (postMessage: string) => {
     } as const
 }
 
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
-    } as const
-}
+
 export const setUserProfile = (profile: any) => {
     return {
         type: "SET-USER-PROFILE",
