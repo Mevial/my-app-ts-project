@@ -1,6 +1,7 @@
 import {ActionsTypes} from "./redux-store";
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
+import {ThunkDispatch} from "redux-thunk";
 
 
 let initialState: InitialStateAuthReducerType = {
@@ -11,9 +12,9 @@ let initialState: InitialStateAuthReducerType = {
 };
 
 export type InitialStateAuthReducerType = {
-    userId: any,
-    email: any,
-    login: any,
+    userId: string | null,
+    email: string | null,
+    login: string | null,
     isAuth: boolean
 }
 
@@ -22,8 +23,7 @@ export const authReducer = (state = initialState, action: ActionsTypes): Initial
         case "SET-USER-DATA":
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload,
             }
 
         default:
@@ -31,10 +31,10 @@ export const authReducer = (state = initialState, action: ActionsTypes): Initial
     }
 }
 
-export const setAuthUserData = (userId: number, email: string, login: string) => {
+export const setAuthUserData = (userId: any, email: any, login: any, isAuth: boolean) => {
     return {
         type: "SET-USER-DATA",
-        data: {userId, email, login}
+        payload: {userId, email, login, isAuth}
     } as const
 }
 
@@ -42,9 +42,32 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
     authAPI.getAuth().then(data => {
         if (data.resultCode === 0) {
             let {id, email, login} = data.data
-          dispatch(setAuthUserData(id, email, login))
+            dispatch(setAuthUserData(id, email, login, true))
         }
     })
+}
+
+export interface Action<T = any> {
+    type: T
+}
+
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: ThunkDispatch<InitialStateAuthReducerType, void, Action>) => {
+    authAPI.login(email, password, rememberMe)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+        })
+}
+
+
+export const logout = () => (dispatch: Dispatch) => {
+    authAPI.logout()
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false))
+            }
+        })
 }
 
 
