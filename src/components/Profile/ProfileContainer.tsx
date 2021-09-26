@@ -6,21 +6,27 @@ import {getUserProfile, getUserStatus, updateUserStatus} from "../../Redux/profi
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 
+// userId = '18935'
+
 
 type PathParamsType = {
-    userId: string
+    userId: string | null
 }
 
 type MapStateToProps = {
-    profile: any
+    profile: string
     status: string
+    authorizedUserId: string| null
+    isAuth: boolean
 }
 type MapDispatchToProps = {
-    getUserProfile: (userId: string) => void
-    getUserStatus: (userId: string) => void
-    updateUserStatus: (status: string) => void
+    getUserProfile: (userId: string | null) => void
+    getUserStatus: (userId: string| null ) => void
+    updateUserStatus: (status: string ) => void
 }
 
+
+// @ts-ignore
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 type ProfilePropsType = MapStateToProps & MapDispatchToProps
 
@@ -28,7 +34,7 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = '18935'
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
@@ -49,6 +55,9 @@ class ProfileContainer extends React.Component<PropsType> {
 let mapStateToProps = (state: AppStateType): MapStateToProps => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
+
 })
 
 export default compose<React.ComponentType>(

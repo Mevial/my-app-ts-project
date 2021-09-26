@@ -4,8 +4,8 @@ import styles from "./Header.module.css";
 
 type PropsHeaderType = {
     isAuth: boolean
-    login: string
-    logout: ()=> void
+    login: string | null
+    logout: () => void
 }
 const Header = (props: PropsHeaderType) => {
     return <header className={styles.header}>
