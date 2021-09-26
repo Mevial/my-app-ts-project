@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {DialogPageType} from "../../Redux/dialogs-reducer";
 import {Redirect} from "react-router-dom";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
 
 type FromDataType = {
     newMessageBody: string
@@ -38,7 +38,7 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={styles.messages}>
                 <div>{messagesElements}</div>
 
-                <AddMessageFormRedux onSubmit={addNewMessage}/>
+                <AddMessageForm onSubmit={addNewMessage}/>
             </div>
         </div>
     )
@@ -47,18 +47,3 @@ const Dialogs = (props: DialogsPropsType) => {
 export default Dialogs
 
 
-const AddMessageForm: React.FC<InjectedFormProps<FromDataType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <Field component="textarea" name="newMessageBody" placeholder="Enter your message"/>
-            <div>
-                <button>Send</button>
-            </div>
-        </form>
-
-    )
-}
-
-const AddMessageFormRedux = reduxForm<FromDataType>({
-    form: "dialogAddMessageForm"
-})(AddMessageForm)
