@@ -14,6 +14,7 @@ import {
     usersReducer, toggleFollowingProgress
 } from "./users-reducer";
 import {authReducer, setAuthUserData} from "./auth-reducer";
+import {appReducer, initializedSuccess} from "./app-reducer";
 
 export type ActionsTypes =
     ReturnType<typeof addPostAC>
@@ -28,6 +29,8 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof initializedSuccess>
+
 
 
 export const rootReducer = combineReducers({
@@ -36,7 +39,8 @@ export const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 });
 
 

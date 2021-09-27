@@ -10,7 +10,7 @@ import {compose} from "redux";
 
 
 type PathParamsType = {
-    userId: string | null
+    userId: string
 }
 
 type MapStateToProps = {
@@ -21,21 +21,25 @@ type MapStateToProps = {
 }
 type MapDispatchToProps = {
     getUserProfile: (userId: string | null) => void
-    getUserStatus: (userId: string| null ) => void
-    updateUserStatus: (status: string ) => void
+    getUserStatus: (userId: string | null ) => void
+    updateUserStatus: (status: string  | null) => void
 }
 
 
-// @ts-ignore
+
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 type ProfilePropsType = MapStateToProps & MapDispatchToProps
 
 class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
-        let userId = this.props.match.params.userId;
+        let userId: string|null = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.authorizedUserId
+            if(!userId) {
+                this.props.history.push("/login")
+            }
         }
+
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
     }
