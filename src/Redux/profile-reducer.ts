@@ -51,7 +51,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 ...state,
                 status: action.status
             }
-
+        case "DELETE-POST":
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         default:
             return state
     }
@@ -61,6 +62,12 @@ export const addPostAC = (postMessage: string) => {
     return {
         type: "ADD-POST",
         postMessage: postMessage
+    } as const
+}
+export const deletePost = (postId: number) => {
+    return {
+        type: "DELETE-POST",
+        postId
     } as const
 }
 
@@ -94,7 +101,7 @@ export const updateUserStatus = (status: string) => (dispatch: Dispatch) => {
     profileAPI.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {
-            dispatch(setStatus(status))
+                dispatch(setStatus(status))
             }
         })
 }

@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {addPostAC, profileReducer, setStatus, setUserProfile} from "./profile-reducer";
+import {addPostAC, deletePost, profileReducer, setStatus, setUserProfile} from "./profile-reducer";
 import {dialogsReducer, sendMessageAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import thunkMiddleware from "redux-thunk"
@@ -30,7 +30,7 @@ export type ActionsTypes =
     | ReturnType<typeof toggleFollowingProgress>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof initializedSuccess>
-
+    | ReturnType<typeof deletePost>
 
 
 export const rootReducer = combineReducers({
