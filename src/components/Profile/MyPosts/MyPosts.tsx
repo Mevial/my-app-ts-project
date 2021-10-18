@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostType} from "../../../Redux/profile-reducer";
@@ -17,7 +17,8 @@ type MyPostsType = {
 }
 
 
-const MyPosts = (props: MyPostsType) => {
+const MyPosts = React.memo((props: MyPostsType) => {
+    console.log("RENDER YO")
     let postsElement = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     // let newPostElement = React.createRef();
@@ -44,15 +45,18 @@ const MyPosts = (props: MyPostsType) => {
             </div>
         </div>
     )
-}
+});
 
 
 export default MyPosts
+
+
 const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps<FromDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={Textarea} name="newPostText" placeholder="Enter your post" validate={[required, maxLength10]}/>
+            <Field component={Textarea} name="newPostText" placeholder="Enter your post"
+                   validate={[required, maxLength10]}/>
             <div>
                 <button>Add post</button>
             </div>

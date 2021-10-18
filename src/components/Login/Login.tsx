@@ -35,7 +35,7 @@ const LoginForm: React.FC<InjectedFormProps<FromDataType>> = (props) => {
                         validate={[required]}
             /> remember me
             </div>
-            {props.error && <div className={styles.formSummaryError}>
+            {props.error &&     <div className={styles.formSummaryError}>
                 {props.error}
             </div>
             }
