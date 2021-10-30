@@ -21,7 +21,7 @@ export type InitialStateAuthReducerType = {
 
 export const authReducer = (state = initialState, action: ActionsTypes): InitialStateAuthReducerType => {
     switch (action.type) {
-        case "SET-USER-DATA":
+        case "samurai-network/SET-USER-DATA":
             return {
                 ...state,
                 ...action.payload,
@@ -34,45 +34,42 @@ export const authReducer = (state = initialState, action: ActionsTypes): Initial
 
 export const setAuthUserData = (userId: any, email: any, login: any, isAuth: boolean) => {
     return {
-        type: "SET-USER-DATA",
+        type: "samurai-network/SET-USER-DATA",
         payload: {userId, email, login, isAuth}
     } as const
 }
 
-export const getAuthUserData = () => (dispatch: Dispatch) => {
-    return authAPI.getAuth()
-        .then(data => {
-        if (data.resultCode === 0) {
-            let {id, email, login} = data.data
-            dispatch(setAuthUserData(id, email, login, true))
-        }
-    })
+export const getAuthUserData = () => async (dispatch: Dispatch) => {
+    let response = await authAPI.getAuth()
+
+    if (response.data.resultCode === 0) {
+        let {id, email, login} = response.data.data
+        dispatch(setAuthUserData(id, email, login, true))
+    }
 }
 
 export interface Action<T = any> {
     type: T
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: ThunkDispatch<InitialStateAuthReducerType, void, Action>) => {
-    authAPI.login(email, password, rememberMe)
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(getAuthUserData())
-            } else {
-                let message = data.messages.length > 0 ? data.messages[0] : "Some error"
-                dispatch(stopSubmit("login", {_error: message}))
-            }
-        })
+export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: ThunkDispatch<InitialStateAuthReducerType, void, Action>) => {
+    let response = await authAPI.login(email, password, rememberMe)
+
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+        dispatch(stopSubmit("login", {_error: message}))
+    }
 }
 
 
-export const logout = () => (dispatch: Dispatch) => {
-    authAPI.logout()
-        .then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null, false))
-            }
-        })
+export const logout = () => async (dispatch: Dispatch) => {
+    let response = await authAPI.logout()
+
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false))
+    }
 }
 
 

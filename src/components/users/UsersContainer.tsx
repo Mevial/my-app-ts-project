@@ -40,13 +40,13 @@ export type UsersPropsType = MapStateToProps & MapDispatchToProps
 
 class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
-
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.getUsers(pageNumber, pageSize)
 
     }
 
@@ -60,8 +60,12 @@ class UsersContainer extends React.Component<UsersPropsType> {
                    users={this.props.users}
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
-                // toggleFollowingProgress={this.props.toggleFollowingProgress}
                    followingInProgress={this.props.followingInProgress}
+                   getUsers={this.props.getUsers}
+                   setUsers={this.props.setUsers}
+                   setTotalUsersCount={this.props.setTotalUsersCount}
+                   isFetching={this.props.isFetching}
+
 
             />
         </>
@@ -75,7 +79,7 @@ const MapStateToProps = (state: AppStateType): MapStateToProps => {
         totalUsersCount: getTotalUsersCountSelector(state),
         currentPage: getCurrentPageSelector(state),
         isFetching: getIsFetchingSelector(state),
-        followingInProgress: getFollowingInProgressSelector(state)
+        followingInProgress: getFollowingInProgressSelector(state),
     }
 }
 
@@ -89,7 +93,6 @@ const MapStateToProps = (state: AppStateType): MapStateToProps => {
 //         followingInProgress: state.usersPage.followingInProgress
 //     }
 // }
-
 
 
 export default compose<React.ComponentType>(connect(MapStateToProps, {

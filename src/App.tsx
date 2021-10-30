@@ -1,12 +1,10 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-
 import {Route, withRouter} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -17,7 +15,6 @@ import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import {AppStateType} from "./Redux/redux-store";
 import Preloader from "./components/common/Preloader/Preloader";
-import {UserType} from "./Redux/users-reducer";
 
 
 type AppPropsType = {
