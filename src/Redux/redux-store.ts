@@ -43,12 +43,12 @@ export const rootReducer = combineReducers({
     app: appReducer
 });
 //@ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store =  createStore(rootReducer,  composeEnhancers(applyMiddleware(thunkMiddleware)));
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// export const store =  createStore(rootReducer,  composeEnhancers(applyMiddleware(thunkMiddleware)));
 
 // создали встроенный объект store в redux, помним про типизацию
 
-// export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type StoreType = typeof store
 export type AppStateType = ReturnType<typeof rootReducer>
