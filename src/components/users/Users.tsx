@@ -34,10 +34,11 @@ export const Users: React.FC<UsersPropsType & UsersAPIComponentPropType> = ({
 
     return (
         <div>
-            <Pagination totalUsersCount={totalUsersCount}
-                       pageSize={pageSize}
-                       currentPage={currentPage}
-                       onPageChanged={onPageChanged}/>
+            <Pagination totalItemsCount={totalUsersCount}
+                        pageSize={pageSize}
+                        currentPage={currentPage}
+                        onPageChanged={onPageChanged}
+                        portionSize={10}/>
             <div>
                 {users.map((u) =>
                     <User key={u.id}
