@@ -5,7 +5,6 @@ import {AppStateType} from "../../Redux/redux-store";
 import {getUserProfile, getUserStatus, updateUserStatus} from "../../Redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
-import {log} from "util";
 
 // userId = '18935'
 
@@ -21,9 +20,9 @@ type MapStateToProps = {
     isAuth: boolean
 }
 type MapDispatchToProps = {
-    getUserProfile: (userId: string | null) => void
-    getUserStatus: (userId: string | null ) => void
-    updateUserStatus: (status: string  | null) => void
+    getUserProfile: (userId: string ) => void
+    getUserStatus: (userId: string) => void
+    updateUserStatus: (status: string) => void
 }
 
 
@@ -40,9 +39,11 @@ class ProfileContainer extends React.Component<PropsType> {
                 this.props.history.push("/login")
             }
         }
+        if (userId){
+            this.props.getUserProfile(userId)
+            this.props.getUserStatus(userId)
+        }
 
-        this.props.getUserProfile(userId)
-        this.props.getUserStatus(userId)
     }
 
     render() {
@@ -66,6 +67,6 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => ({
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus}),
+    connect<MapStateToProps, MapDispatchToProps, {},AppStateType>(mapStateToProps, { getUserStatus, getUserProfile,updateUserStatus}),
     withRouter,
 )(ProfileContainer)
